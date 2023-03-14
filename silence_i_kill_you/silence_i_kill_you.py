@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Remove silence from a video file.
 
-Usage: silence_i_kill_you PATH [--db=<int>] [--duration=<int>] [--verbose]
+Usage: silence_i_kill_you PATH ... [--db=<int>] [--duration=<int>] [--verbose]
 
 Options:
     -l <int>, --db=<int>        Decibel level for silence [default: -30]
@@ -10,6 +10,7 @@ Options:
 
 Original source: https://gist.github.com/antiboredom/8808d04c86ee13e5cf55b1347e043e20
 """
+import glob
 import logging
 import os
 import re
@@ -147,11 +148,13 @@ if __name__ == "__main__":
     args = docopt(__doc__)
     if args["--verbose"]:
         logging.getLogger().setLevel(logging.DEBUG)
-    videofile = args["PATH"]
-
-    logging.info("Detecting silence in %s ...", videofile)
-    silence_file = get_silences(videofile, args["--db"], args["--duration"])
-    logging.info("Silence detected, parsing file ...")
-    silences = parse_silences(silence_file)
-    logging.info("Removing silence from file and saving as new file.")
-    compose(videofile, silences)
+    
+    for path in args["PATH"]:
+        videofiles = glob.glob(path)
+        for videofile in videofiles:
+            logging.info("Detecting silence in %s ...", videofile)
+            silence_file = get_silences(videofile, args["--db"], args["--duration"])
+            logging.info("Silence detected, parsing file ...")
+            silences = parse_silences(silence_file)
+            logging.info("Removing silence from file and saving as new file.")
+            compose(videofile, silences)
