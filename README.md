@@ -12,7 +12,6 @@ Options:
     -l <int>, --db=<int>        Decibel level for silence [default: -30]
     -d <int>, --duration=<int>  Silence duration in seconds [default: 1]
     -v, --verbose               Verbose output
-"""
 ```
 
 ## Installation
