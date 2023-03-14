@@ -154,7 +154,10 @@ if __name__ == "__main__":
         for videofile in videofiles:
             logging.info("Detecting silence in %s ...", videofile)
             silence_file = get_silences(videofile, args["--db"], args["--duration"])
-            logging.info("Silence detected, parsing file ...")
+            logging.info("Silence detection finished, parsing file ...")
             silences = parse_silences(silence_file)
-            logging.info("Removing silence from file and saving as new file.")
-            compose(videofile, silences)
+            if silences:
+                logging.info("Removing silence from file and saving as new file.")
+                compose(videofile, silences)
+            else:
+                logging.info("No silence found in %s that matches the parameters.", videofile)
