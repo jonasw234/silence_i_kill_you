@@ -6,7 +6,7 @@ Removes silence from video files
 
 ## Usage
 ```
-Usage: silence_i_kill_you PATH [--db=<int>] [--duration=<int>] [--verbose]
+Usage: silence_i_kill_you PATH ... [--db=<int>] [--duration=<int>] [--verbose]
 
 Options:
     -l <int>, --db=<int>        Decibel level for silence [default: -30]
