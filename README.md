@@ -2,6 +2,8 @@
 
 Removes silence from video files
 
+[![](https://i.kym-cdn.com/entries/icons/original/000/003/172/achmed.png)](https://knowyourmeme.com/memes/silence-i-kill-you)
+
 ## Usage
 ```
 Usage: silence_i_kill_you PATH [--db=<int>] [--duration=<int>] [--verbose]
